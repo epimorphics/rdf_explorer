@@ -58,9 +58,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Deployment
 
 The app is deployed to [GitHub pages](https://epimorphics.github.com/rdf_explorer/).
-To update the deployment, ensure you don't have any uncommitted changes then run
-the `./deploy.sh` Bash script.
+To update the deployment run the `./deploy.sh` Bash script.
 
 **Note**: this script does do some force checkouts to update `gh-pages` branch, so
-uncommitted changes in the current branch will be lost. Commit or stash changes
-before running the deploy script!
+it will check for uncommitted changes before deploying and abort if there are any.
+To proceed, either commit or stash any uncommitted changes.

@@ -2,6 +2,16 @@
 # abort on errors
 set -e
 
+if [ -n "`git status --porcelain`" ]
+then
+  echo "You have uncomitted changes. Please commit or stash these"
+  echo "changes before deploying, otherwise you risk losing them."
+  echo
+  echo "Current git status:"
+  git status
+  exit 1
+fi
+
 # set the NODE_ENV to production, unless overridden by an existing
 # environment variable
 export NODE_ENV=${NODE_ENV:-production}
@@ -21,7 +31,7 @@ git --work-tree dist add --all
 git --work-tree dist commit -m "gh-pages"
 git push origin HEAD:gh-pages --force
 
-# # cleanup
+# cleanup
 git checkout -f $current_branch
 git branch -D gh-pages
 
